@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2 ">
+
+		
+		{% if role == '1' %}
+
+			<div class="box box-success">
+				
+				<div class="box-header with-border">
+				   <h3 class="box-title" >Recent Uploaded Prescription</h3>             
+				</div>
+
+				<div class="box-body">
+					<div class="table-responsive">
+			           <table class="table" id="data_table">
+			              <thead>
+			              <tr>
+							<th>S.No.</th>
+							<th>File</th>
+							<th>Uploaded On</th>
+								
+							</tr>
+			              </thead>
+			              <tbody>
+				              {% for s in sf %}
+					              <tr>
+					              	<td>{{ forloop.counter }}</td>
+					              	<td><a href="/media/{{ s.file }}">{{ s.file }}</a></td>
+					              	<td>{{ s.file_created }}</td>
+					              </tr>
+				              {% endfor %}
+							
+			              </tbody>
+			           </table>
+			        </div>
+				</div>
+				<div class="box-footer clearfix">
+
+	            </div>
+			</div>
+		
+		{% else %}
+			
+			<div class="box box-success">
+				
+				<div class="box-header with-border">
+				   <h3 class="box-title" >Shared Prescription</h3>             
+				</div>
+
+				<div class="box-body">
+					<div class="table-responsive">
+			           <table class="table" id="data_table">
+			              <thead>
+			              <tr>
+							<th>S.No.</th>
+							<th>File</th>
+							<th>Shared On</th>
+							<th>Uploaded On</th>
+							<th>Owner</th>
+								
+							</tr>
+			              </thead>
+			              <tbody>
+				              {% for s in sf %}
+					              <tr>
+					              	<td>{{ forloop.counter }}</td>
+					              	<td><a href="/media/{{ s.file.file}}">{{ s.file.file }}</a></td>
+					              	<td>{{ s.file_shared }}</td>
+					              	<td>{{ s.file.file_created }}</td>
+					              	<td>{{ s.file.user }}</td>
+					              </tr>
+				              {% endfor %}
+							
+			              </tbody>
+			           </table>
+			        </div>
+				</div>
+				<div class="box-footer clearfix">
+
+	            </div>
+			</div>
+		
+		{% endif %}
+
+
+		</div>
+	</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+
+
+{% block content %}
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3 ">
+
+		{% if messages %}
+		<ul class="messages">
+		    {% for message in messages %}
+		    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+		    {% endfor %}
+		</ul>
+		{% endif %}
+
+		<div class="box box-success">
+			
+			<div class="box-header with-border">
+			   <h3 class="box-title" >Share Prescription</h3>             
+			</div>
+
+			<div class="box-body">
+				<div class="table-responsive">
+				
+				<form method="POST" action="" enctype='multipart/form-data'>{% csrf_token %}
+				  
+				  <div class="form-group">
+				    {{form.file | add_class:"form-control"}}
+				  </div>
+
+				  <div class="form-group">
+				    {{form.user | add_class:"form-control"}}
+				  </div>
+				  
+				  <input type="submit" class="btn btn-primary" value="Share">
+				</form>
+
+		        </div>
+			</div>
+			<div class="box-footer clearfix">
+
+            </div>
+		</div>
+
+			
+		</div>
+		
+	</div>
+</div>
+	
+{% endblock %}
